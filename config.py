@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+AI_API_KEY = os.getenv("AI_API_KEY")
 
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY is not configured.")
+if not AI_API_KEY:
+    raise ValueError("AI_API_KEY is not configured.")
