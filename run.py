@@ -11,7 +11,8 @@ def create_app():
     if config.DEBUG:
         CORS(app)
     else:
-        CORS(app, resources={r"/*": {"origins": "https://trpox.com"}})
+        CORS(app)
+        # CORS(app, resources={r"/*": {"origins": "https://trpox.com"}})
 
     register_routes(app)
 
