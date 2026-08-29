@@ -12,3 +12,8 @@ def index():
 @page_routes.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
+
+
+@page_routes.route("/ai-test")
+def ai():
+    return render_template("ai_test.html")

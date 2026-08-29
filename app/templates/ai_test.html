@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>AI Assistant</title>
+  </head>
+
+  <body style="padding: 50px">
+    <a href="/" style="margin-right: 50px">Ana Sayfa</a>
+    <a href="/dashboard">Kontrol Paneli</a>
+
+    <h1>AI Asistan</h1>
+
+    <div id="chat-container">
+      <p><strong>Assistant:</strong> Merhaba, Nasıl yardımcı olabilirim</p>
+    </div>
+
+    <form id="chat-form">
+      <input
+        type="text"
+        id="message"
+        name="message"
+        placeholder="Mesajınız"
+        required
+      />
+
+      <button type="submit">Gönder</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("chat-form");
+      const messageInput = document.getElementById("message");
+      const chatContainer = document.getElementById("chat-container");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const message = messageInput.value.trim();
+
+        if (!message) {
+          return;
+        }
+
+        chatContainer.innerHTML += `
+            <p><strong>You:</strong> ${message}</p>
+        `;
+
+        messageInput.value = "";
+
+        try {
+          const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: message,
+            }),
+          });
+
+          const data = await response.json();
+
+          chatContainer.innerHTML += `
+                <p><strong>Assistant:</strong> ${data.response}</p>
+            `;
+        } catch (error) {
+          console.error("Error:", error);
+
+          chatContainer.innerHTML += `
+                <p><strong>Assistant:</strong> An error occurred.</p>
+            `;
+        }
+      });
+    </script>
+  </body>
+</html>

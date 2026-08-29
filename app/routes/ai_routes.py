@@ -6,5 +6,4 @@ from app.controllers.ai_controller import chat
 ai_routes = Blueprint("chat", __name__)
 
 # HTTP isteklerini ilgili methodlara yonlendiriyoruz
-# ai_routes.route("/chat", methods=["POST"])(chat)
-ai_routes.route("/chat", methods=["GET"])(chat)
+ai_routes.route("/chat", methods=["POST"])(chat)
