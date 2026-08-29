@@ -3,9 +3,11 @@ from flask import request, jsonify
 from app.services.ai_service import AiService
 
 
+# Nesneyi olusturuyoruz
 ai_service = AiService()
 
 
+# Kullanicidan mesaji aliyoruz ve yanit donderiyoruz
 def chat():
     # data = request.get_json()
 
