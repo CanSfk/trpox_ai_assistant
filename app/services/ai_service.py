@@ -12,13 +12,19 @@ class AiService:
     # Kullanici mesajini yapay zekaya iletir ve yanit dondurur.
     def chat(self, message: str) -> str:
         response = self.client.chat.completions.create(
+            model=config.AI_MODEL,
             messages=[
+                {
+                    "role": "system",
+                    "content": config.AI_SYSTEM_PROMPT,
+                },
                 {
                     "role": "user",
                     "content": message,
-                }
+                },
             ],
-            model="openai/gpt-oss-120b",
+            max_tokens=config.AI_MAX_TOKENS,
+            temperature=config.AI_TEMPERATURE,
         )
 
         return response.choices[0].message.content or "Not response"
