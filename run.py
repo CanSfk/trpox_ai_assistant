@@ -8,7 +8,7 @@ debug_state = bool(config.DEBUG)
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder="./app/templates")
 
     if debug_state:
         CORS(app)
