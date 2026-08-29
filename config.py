@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Debug ayari
-DEBUG = os.getenv("DEBUG")
+DEBUG = os.getenv("DEBUG", "false").lower() == "true"
 
 # Api anahtar degerimizi aliyoruz.
 AI_API_KEY = os.getenv("AI_API_KEY")
